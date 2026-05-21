@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axion Cup '25 | Where Innovation Ignites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            /* Refined Premium Palette */
+            --dark-bg: #03030b;
+            --deep-navy: #050514; 
+            --mid-navy: #0d0d2b;
+            --light-purple: #2a1b54;
+            --accent-cyan: #00f7ff;
+            --accent-magenta: #ff007f;
+            --accent-white: #f8f9fa;
+            
+            /* Glassmorphism Variables */
+            --glass-bg: rgba(13, 13, 43, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --hover-border: rgba(0, 247, 255, 0.4);
+            
+            --section-padding: 80px 5%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--accent-white);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle radial lighting */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 247, 255, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(255, 0, 127, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(3, 3, 11, 0.7);
+            border-bottom: 1px solid transparent;
+        }
+
+        header.scrolled {
+            padding: 15px 5%;
+            background: rgba(5, 5, 20, 0.9);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--accent-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--accent-white);
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--deep-navy), var(--dark-bg));
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-family: "Orbitron", sans-serif;
+            font-size: 4.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0px 4px 20px rgba(0, 247, 255, 0.15); /* Soft, static glow */
+        }
+
+        .subheading {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(248, 249, 250, 0.8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .subheading span {
+            color: var(--accent-magenta);
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 4px; /* Sharper edges for a tech feel */
+            font-family: "Orbitron", sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: transparent;
+            color: var(--dark-bg);
+            border: none;
+        }
+
+        /* Gradient background for primary button */
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, var(--accent-cyan), #00a2ff);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 247, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Event Overview */
+        .section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: "Orbitron", sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--accent-white);
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+            border-radius: 2px;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .overview-card {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        /* Top highlight bar on cards */
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--accent-cyan);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--hover-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 247, 255, 0.05);
+        }
+
+        .overview-card:hover::before {
+            opacity: 1;
+        }
+
+        .overview-icon {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--accent-cyan);
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .overview-card:hover .overview-icon {
+            transform: scale(1.1);
+            color: var(--accent-magenta);
+        }
+
+        .overview-card h3 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent-white);
+            letter-spacing: 1px;
+        }
+
+        .overview-card p {
+            color: rgba(248, 249, 250, 0.7);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Modules Preview */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .module-card {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--hover-border);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .module-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+        }
+
+        .module-content {
+            padding: 35px 30px;
+        }
+
+        .module-card h3 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent-white);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 1px;
+        }
+
+        .module-icon {
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+        }
+
+        .module-card p {
+            color: rgba(248, 249, 250, 0.7);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .module-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-magenta);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .module-cta:hover {
+            color: var(--accent-cyan);
+            gap: 12px;
+        }
+
+        /* Why Attend */
+        .why-attend {
+            background: linear-gradient(135deg, var(--mid-navy), var(--deep-navy));
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .attend-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .attend-text {
+            flex: 1;
+        }
+
+        .attend-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .value-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+
+        .value-card:hover {
+            background: rgba(0, 247, 255, 0.05);
+            border-color: var(--hover-border);
+            transform: translateY(-5px);
+        }
+
+        .value-card h4 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+
+        .value-card h4 i {
+            color: var(--accent-magenta);
+        }
+
+        .value-card p {
+            color: rgba(248, 249, 250, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* REDESIGNED LIVELY ROTATING CIRCLE */
+        .visual-circle {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, var(--accent-cyan) 25%, transparent 50%, var(--accent-magenta) 75%, transparent 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 60px rgba(0, 247, 255, 0.15);
+        }
+
+        .visual-circle.active {
+            /* Entire element rotates */
+            animation: rotate 20s linear infinite;
+        }
+
+        .visual-circle::before {
+            content: "";
+            position: absolute;
+            width: calc(100% - 6px); /* Thicker 3px rotating border */
+            height: calc(100% - 6px);
+            border-radius: 50%;
+            background: var(--dark-bg);
+            z-index: 1;
+        }
+
+        .circle-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            /* Removed counter-rotate so the text spins with the circle */
+        }
+
+        .circle-content h3 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-white);
+        }
+
+        .circle-content p {
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* News Section Refinements */
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: var(--glass-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--hover-border);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .news-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: brightness(0.8);
+        }
+        
+        .news-card:hover .news-image img {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        .news-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(3, 3, 11, 0.85);
+            color: var(--accent-cyan);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-family: "Orbitron", sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            z-index: 2;
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .news-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-category {
+            display: inline-block;
+            color: var(--accent-magenta);
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            align-self: flex-start;
+        }
+
+        .news-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--accent-white);
+            line-height: 1.4;
+        }
+
+        .news-card p {
+            color: rgba(248, 249, 250, 0.7);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .news-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: gap 0.3s ease;
+        }
+
+        .news-link:hover {
+            gap: 12px;
+        }
+
+        /* Sponsors Section Refinements */
+        .sponsors-section {
+            background: linear-gradient(135deg, #020208, var(--deep-navy));
+            overflow: hidden;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .sponsor-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1rem;
+            color: rgba(248, 249, 250, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .sponsors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        /* Gradient mask for smooth fade in/out of carousel */
+        .sponsors-container::before,
+        .sponsors-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+        }
+        .sponsors-container::before {
+            left: 0;
+            background: linear-gradient(to right, #020208, transparent);
+        }
+        .sponsors-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--deep-navy), transparent);
+        }
+
+        .sponsors-track {
+            display: flex;
+            gap: 40px;
+            animation: scroll 30s linear infinite;
+            padding: 10px 0;
+            width: max-content;
+        }
+
+        .sponsor-logo {
+            flex: 0 0 auto;
+            width: 180px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            filter: grayscale(100%);
+        }
+        
+        .sponsor-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .sponsor-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%) drop-shadow(0 0 10px rgba(0, 247, 255, 0.3));
+            transform: scale(1.05);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-180px * 7 - 40px * 7)); }
+        }
+
+        .sponsor-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* About Section */
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-container p {
+            color: rgba(248, 249, 250, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .mission-text {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent-white);
+            margin: 50px 0;
+            position: relative;
+            padding: 0 40px;
+            line-height: 1.6;
+        }
+
+        .mission-text span {
+            color: var(--accent-cyan);
+        }
+
+        .mission-text::before,
+        .mission-text::after {
+            content: '"';
+            font-family: "Poppins", sans-serif;
+            font-size: 4rem;
+            position: absolute;
+            color: var(--accent-magenta);
+            opacity: 0.3;
+        }
+
+        .mission-text::before { top: -30px; left: 0; }
+        .mission-text::after { bottom: -60px; right: 0; }
+
+        /* Social Teaser */
+        .social-teaser {
+            text-align: center;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--mid-navy), #020208);
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-text {
+            font-family: "Orbitron", sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--accent-white), var(--accent-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .coming-soon {
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #020205;
+            padding: 80px 5% 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+        }
+
+        .footer-logo {
+            font-family: "Orbitron", sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            color: rgba(248, 249, 250, 0.6);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 4px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(0, 247, 255, 0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2);
+        }
+
+        .footer-heading {
+            font-family: "Orbitron", sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--accent-white);
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(248, 249, 250, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a i {
+            color: var(--accent-magenta);
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+            transform: translateX(5px);
+        }
+
+        .footer-links a:hover i {
+            color: var(--accent-cyan);
+        }
+
+        .newsletter p {
+            color: rgba(248, 249, 250, 0.6);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 4px 0 0 4px;
+            border: 1px solid var(--glass-border);
+            border-right: none;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--accent-white);
+            font-family: "Poppins", sans-serif;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(0, 247, 255, 0.02);
+        }
+
+        .newsletter-btn {
+            background: var(--accent-cyan);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            padding: 0 25px;
+            font-family: "Orbitron", sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .newsletter-btn:hover {
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: rgba(248, 249, 250, 0.4);
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(248, 249, 250, 0.4);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .tagline { font-size: 3.8rem; }
+            .attend-container { flex-direction: column; gap: 40px;}
+            .visual-circle { width: 300px; height: 300px; margin-top: 20px;}
+            .visual-circle::before { width: calc(100% - 6px); height: calc(100% - 6px); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 75px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(3, 3, 11, 0.98);
+                width: 100%;
+                height: calc(100vh - 75px);
+                padding: 40px 20px;
+                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                border-top: 1px solid var(--glass-border);
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; text-align: center; padding: 10px; display: block;}
+            .nav-links a::after { display: none; }
+            .hamburger { display: block; }
+            
+            .tagline { font-size: 3rem; }
+            .subheading { font-size: 1.1rem; }
+            .cta-buttons { flex-direction: column; gap: 15px; width: 100%; max-width: 300px; margin: 30px auto 0; }
+            .btn { width: 100%; }
+            .section-title { font-size: 2rem; }
+            .value-points { grid-template-columns: 1fr; }
+            .social-text { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .tagline { font-size: 2.2rem; }
+            .overview-grid, .modules-grid, .news-grid { grid-template-columns: 1fr; }
+            .visual-circle { width: 250px; height: 250px; }
+            .newsletter-form { flex-direction: column; gap: 10px; }
+            .newsletter-input, .newsletter-btn { border-radius: 4px; border: 1px solid var(--glass-border); width: 100%;}
+            .newsletter-btn { padding: 15px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px;}
+            .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <a href="index.html" class="logo">AXION</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="modules.html">Modules</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="tagline">AXION CUP '25</h1>
+            <p class="subheading">Where Innovation Ignites</p>
+            <p class="subheading"><span>10 | 11 | 12 </span>October</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="window.location.href='register.html'">Register Now</button>
+                <button class="btn btn-secondary" onclick="window.location.href='schedule.html'">View Schedule</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Event Overview</h2>
+        <div class="overview-grid">
+            <div class="overview-card fade-in">
+                <div class="overview-icon"><i class="fas fa-calendar-alt"></i></div>
+                <h3>Dates & Venue</h3>
+                <p>October 10-12, 2025<br />Roots IVY H-8, Islamabad</p>
+            </div>
+            <div class="overview-card fade-in">
+                <div class="overview-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Target Audience</h3>
+                <p>Students (8th Grade - A2)<br />Passionate about STEAM fields</p>
+            </div>
+            <div class="overview-card fade-in">
+                <div class="overview-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Competitions</h3>
+                <p>27 unique competitions<br />Across 9 specialized modules</p>
+            </div>
+            <div class="overview-card fade-in">
+                <div class="overview-icon"><i class="fas fa-users"></i></div>
+                <h3>Social Events</h3>
+                <p>You'll find out more soon!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: rgba(5, 5, 20, 0.5); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+        <h2 class="section-title">Featured Modules</h2>
+        <div class="modules-grid">
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-laptop-code module-icon"></i> Computer Science</h3>
+                    <p>Step into the world where creativity meets logic, and bring your ideas to life.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-briefcase module-icon"></i> Business</h3>
+                    <p>Discover the art of pitching and learn how to transform your startup dream into reality.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-heartbeat module-icon"></i> Medicine</h3>
+                    <p>Explore the future of healthcare, blend technology and medicine to transform lives and save futures.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-balance-scale module-icon"></i> Law</h3>
+                    <p>Step into the world of justice, where critical thinking and real-world scenarios shape the future of law and order.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-solid fa-rocket module-icon"></i> Aerospace</h3>
+                    <p>Reach for the skies and beyond, engineer your way into the horizons.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-leaf module-icon"></i> Environment</h3>
+                    <p>Strive to protect our planet, let innovation and sustainability pave the way for a greener future.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-solid fa-gears module-icon"></i> Engineering</h3>
+                    <p>Step outside your comfort zone, build unique projects and learn to improvise.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-solid fa-camera module-icon"></i> Media</h3>
+                    <p>Tell your own story. Let every frame capture a vision, let every edit bring it to life.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="module-card fade-in">
+                <div class="module-content">
+                    <h3><i class="fas fa-calculator module-icon"></i> Mathematics</h3>
+                    <p>Crack puzzles and discover how everything works. Let numbers be your guide.</p>
+                    <a href="modules.html" class="module-cta">View Competitions <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section why-attend">
+        <h2 class="section-title">Why Attend Axion Cup?</h2>
+        <div class="attend-container">
+            <div class="attend-text fade-in">
+                <p style="font-size: 1.15rem; margin-bottom: 30px; line-height: 1.8; color: rgba(248, 249, 250, 0.9);">
+                    Axion Cup '25 is more than just a competition - it's a transformative experience that brings together the brightest young minds in STEAM. Here's what you'll gain:
+                </p>
+                <div class="value-points">
+                    <div class="value-card">
+                        <h4><i class="fas fa-brain"></i> Learn</h4>
+                        <p>Gain knowledge from industry experts through hands-on activities.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4><i class="fas fa-trophy"></i> Compete</h4>
+                        <p>Challenge yourself in 12 unique competitions across STEAM disciplines.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4><i class="fas fa-handshake"></i> Connect</h4>
+                        <p>Network with peers, mentors, and professionals in your field.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4><i class="fas fa-medal"></i> Win</h4>
+                        <p>Earn prestigious awards and recognition for your achievements.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="attend-visual fade-in">
+                <div class="visual-circle">
+                    <div class="circle-content">
+                        <h3>3 Days</h3>
+                        <p>of innovation, competition, and<br>Collaboration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Latest News</h2>
+        <div class="news-container">
+            <div class="news-grid">
+                <div class="news-card fade-in">
+                    <div class="news-image">
+                        <div class="news-date">Sep 01, 2025</div>
+                        <img src="news-1.jpg" alt="Registration Open">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Announcement</span>
+                        <h3>Registration Now Open for Axion Cup '25</h3>
+                        <p>Secure your spot at Pakistan's premier STEAM event. Early bird discounts available until August 15th.</p>
+                        <a href="news.html" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-image">
+                        <div class="news-date">Jul 18, 2025</div>
+                        <img src="news-2.jpg" alt="Keynote Speaker">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Featured Speaker</span>
+                        <h3>Dr. Sarah Khan to Deliver Keynote Address</h3>
+                        <p>Renowned aerospace engineer joins Axion Cup as our opening ceremony keynote speaker.</p>
+                        <a href="news.html" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card fade-in">
+                    <div class="news-image">
+                        <div class="news-date">Sep 01, 2025</div>
+                        <img src="news-3.jpg" alt="Event Details">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Announcement</span>
+                        <h3>Event Details are now live!</h3>
+                        <p>A new adventure awaits! Day 1 commences on 10th October, 2025. Check the schedule now.</p>
+                        <a href="news.html" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section sponsors-section">
+        <h2 class="section-title">Our Sponsors</h2>
+        <p class="sponsor-title">Proudly supported by industry leaders in STEAM innovation</p>
+        <div class="sponsors-container">
+            <div class="sponsors-track">
+                <div class="sponsor-logo"><img src="sponsor-1.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-2.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-3.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-4.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-5.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-6.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-7.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-1.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-2.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-3.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-4.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-5.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-6.png" alt="Sponsor Logo"></div>
+                <div class="sponsor-logo"><img src="sponsor-7.png" alt="Sponsor Logo"></div>
+            </div>
+        </div>
+        <div class="sponsor-cta">
+            <button class="btn btn-secondary" onclick="window.location.href='contact.html'">Become a Sponsor</button>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">About Axion</h2>
+        <div class="about-container fade-in">
+            <p>Axion is a pioneering initiative by a group of passionate students and educators dedicated to advancing STEAM education in Pakistan. Our mission is to create platforms where young innovators can showcase their talents, collaborate across disciplines, and shape the future of technology and science.</p>
+            <p class="mission-text">"We believe that the next generation of Pakistani scientists, engineers, and entrepreneurs will solve global challenges and put <span>Pakistan</span> on the map of technological innovation."</p>
+            <button class="btn btn-primary" onclick="window.location.href='about.html'">Our Full Story</button>
+        </div>
+    </section>
+
+    <section class="social-teaser fade-in">
+        <h2 class="social-text">Get Ready for the Nights</h2>
+        <p class="coming-soon">Social Events Announcement Coming Soon</p>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="#" class="footer-logo">AXION</a>
+                <p>Axion Cup '25 is a premier STEAM event designed to ignite innovation and foster collaboration among Pakistan's brightest young minds.</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-container">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="modules.html"><i class="fas fa-chevron-right"></i> Modules</a></li>
+                    <li><a href="schedule.html"><i class="fas fa-chevron-right"></i> Schedule</a></li>
+                    <li><a href="registration.html"><i class="fas fa-chevron-right"></i> Registration</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-container">
+                <h3 class="footer-heading">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+                    <li><a href="modules.html"><i class="fas fa-chevron-right"></i> Competition Rules</a></li>
+                    <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Code of Conduct</a></li>
+                    <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="newsletter">
+                <h3 class="footer-heading">Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest news and updates about Axion Cup '25</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" class="newsletter-input" required />
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">&copy; 2025 Axion Cup. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="terms.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js initialization - Updated to Cyan and Magenta theme
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 900 } }, 
+                color: { value: ["#00f7ff", "#ff007f"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.6, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true, distance: 150, color: "#00f7ff", opacity: 0.2, width: 1,
+                },
+                move: {
+                    enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out", bounce: false,
+                },
+            },
+            interactivity: {
+                detect_on: "window",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push", push: { particles_nb: 3 } },
+                    resize: true,
+                },
+            },
+            retina_detect: true,
+        });
+
+        // Header scroll effect
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            hamburger.innerHTML = navLinks.classList.contains("active") ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Scroll animation for elements
+        const fadeElements = document.querySelectorAll(".fade-in");
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -100px 0px" };
+        const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("appear");
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        fadeElements.forEach((element) => {
+            appearOnScroll.observe(element);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute("href");
+                if(targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+                    if (navLinks.classList.contains("active")) {
+                        navLinks.classList.remove("active");
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Circle rotation animation active trigger
+        document.addEventListener("DOMContentLoaded", function () {
+            const circle = document.querySelector(".visual-circle");
+            if(!circle) return;
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            circle.classList.add("active");
+                        }
+                    });
+                },
+                { threshold: 0.5 }
+            );
+            observer.observe(circle);
+        });
+
+        // 3D tilt effect on overview cards
+        document.querySelectorAll(".overview-card").forEach((card) => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                let rotateX = ((y - centerY) / centerY) * 6;
+                let rotateY = ((x - centerX) / centerX) * 6;
+                if (y < centerY) { rotateX = -rotateX; } 
+                
+                card.style.transform = `translateY(-10px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener("mouseenter", () => {
+                card.style.transition = "transform 0.1s ease, border-color 0.3s ease, box-shadow 0.3s ease";
+            });
+
+            card.addEventListener("mouseleave", () => {
+                card.style.transition = "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+                card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1) translateY(0)";
+            });
+        });
+    </script>
+</body>
+</html>

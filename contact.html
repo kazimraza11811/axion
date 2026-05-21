@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axion Cup '25 | Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Refined Premium Palette */
+            --dark-bg: #03030b;
+            --deep-navy: #050514; 
+            --mid-navy: #0d0d2b;
+            --light-purple: #2a1b54;
+            --accent-cyan: #00f7ff;
+            --accent-magenta: #ff007f;
+            --accent-white: #f8f9fa;
+            
+            /* Glassmorphism Variables */
+            --glass-bg: rgba(13, 13, 43, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --hover-border: rgba(0, 247, 255, 0.4);
+            
+            --section-padding: 80px 5%;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--accent-white);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 15% 20%, rgba(0, 247, 255, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(255, 0, 127, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: all 0.5s ease;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            background: rgba(3, 3, 11, 0.7); border-bottom: 1px solid transparent;
+        }
+        header.scrolled {
+            padding: 15px 5%; background: rgba(5, 5, 20, 0.9);
+            border-bottom: 1px solid var(--glass-border); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo {
+            font-family: "Orbitron", sans-serif; font-size: 1.8rem; font-weight: 700;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            text-decoration: none; letter-spacing: 2px;
+        }
+        
+        .nav-links { display: flex; gap: 35px; }
+        .nav-links a {
+            color: var(--accent-white); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            position: relative; transition: color 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .nav-links a::after {
+            content: ""; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta)); transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--accent-cyan); }
+        .nav-links a:hover::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; background: transparent; border: none; color: var(--accent-white); font-size: 1.5rem; }
+        
+        /* Hero Section */
+        .hero {
+            height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; position: relative; overflow: hidden; padding: 0 5%;
+            background: linear-gradient(135deg, var(--deep-navy), var(--dark-bg));
+        }
+        #particles-js { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        
+        .tagline {
+            font-family: "Orbitron", sans-serif; font-size: 4rem; margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 20%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            letter-spacing: 3px; text-transform: uppercase; text-shadow: 0px 4px 20px rgba(0, 247, 255, 0.15);
+        }
+        
+        .subheading { font-size: 1.3rem; margin-bottom: 40px; color: rgba(248, 249, 250, 0.8); max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 300; letter-spacing: 1px;}
+        
+        /* Contact Hook Section */
+        .contact-hook { padding: var(--section-padding); text-align: center; background: rgba(5, 5, 20, 0.5); border-bottom: 1px solid var(--glass-border); }
+        .hook-container { max-width: 900px; margin: 0 auto; }
+        .hook-text { font-size: 1.3rem; line-height: 1.8; margin-bottom: 50px; color: rgba(248, 249, 250, 0.9); font-weight: 300; }
+        .hook-text span {
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 600;
+        }
+        
+        .contact-options { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        .contact-option {
+            background: var(--glass-bg); border-radius: 12px; padding: 35px 20px; width: 220px;
+            transition: all 0.4s ease; border: 1px solid var(--glass-border); backdrop-filter: blur(10px);
+        }
+        .contact-option:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); border-color: var(--hover-border); }
+        .option-icon { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-cyan); transition: transform 0.3s ease;}
+        .contact-option:hover .option-icon { transform: scale(1.1); color: var(--accent-magenta); }
+        .option-title { font-family: "Orbitron", sans-serif; font-size: 1.1rem; margin-bottom: 12px; color: var(--accent-white); letter-spacing: 1px;}
+        .option-desc { color: rgba(248, 249, 250, 0.6); font-size: 0.9rem; line-height: 1.5; }
+        
+        /* Contact Profiles Section */
+        .profiles-section { padding: var(--section-padding); position: relative; }
+        .section-title { font-family: "Orbitron", sans-serif; font-size: 2.5rem; text-align: center; margin-bottom: 60px; position: relative; color: var(--accent-white); }
+        .section-title::after {
+            content: ""; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 3px; background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta)); border-radius: 2px;
+        }
+        
+        .profiles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
+        
+        .profile-card {
+            background: var(--glass-bg); border-radius: 12px; overflow: hidden; position: relative;
+            transition: all 0.4s ease; border: 1px solid var(--glass-border); backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .profile-card:hover { transform: translateY(-8px); border-color: var(--hover-border); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); }
+        
+        .profile-header { padding: 40px 30px 20px; text-align: center; background: linear-gradient(135deg, rgba(13, 13, 43, 0.8), rgba(5, 5, 20, 0.9)); position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        
+        .profile-image {
+            width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
+            overflow: hidden; display: block; border: 3px solid var(--accent-cyan); box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+            transition: transform 0.4s ease;
+        }
+        
+        .profile-card:hover .profile-image { transform: scale(1.05); border-color: var(--accent-magenta); box-shadow: 0 0 20px rgba(255, 0, 127, 0.2); }
+        .profile-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .profile-name { font-family: "Orbitron", sans-serif; font-size: 1.6rem; margin-bottom: 5px; color: var(--accent-white); letter-spacing: 1px; }
+        .profile-role { color: var(--accent-cyan); font-weight: 500; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        
+        .profile-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        .profile-tag { background: rgba(255, 255, 255, 0.05); color: var(--accent-white); padding: 5px 15px; border-radius: 4px; font-size: 0.8rem; border: 1px solid var(--glass-border); }
+        
+        .profile-content { padding: 30px; }
+        .profile-field { margin-bottom: 20px; }
+        .field-label { font-family: "Orbitron", sans-serif; font-size: 0.75rem; color: var(--accent-cyan); margin-bottom: 5px; display: block; text-transform: uppercase; letter-spacing: 1px; }
+        .field-value { color: rgba(248, 249, 250, 0.9); font-weight: 400; font-size: 0.95rem; }
+        
+        .contact-methods { display: flex; gap: 15px; justify-content: center; margin-top: 30px; padding-top: 25px; border-top: 1px solid var(--glass-border); }
+        .contact-method {
+            width: 45px; height: 45px; border-radius: 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border);
+            display: flex; justify-content: center; align-items: center; color: var(--accent-white);
+            font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none;
+        }
+        .contact-method:hover { background: rgba(0, 247, 255, 0.1); border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2); }
+        
+        /* Footer */
+        footer { background: #020205; padding: 80px 5% 30px; border-top: 1px solid var(--glass-border); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; max-width: 1200px; margin: 0 auto 50px; }
+        .footer-logo {
+            font-family: "Orbitron", sans-serif; font-size: 2.2rem; font-weight: 700;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; letter-spacing: 2px; margin-bottom: 25px; display: inline-block;
+        }
+        .footer-about p { color: rgba(248, 249, 250, 0.6); line-height: 1.8; margin-bottom: 25px; font-size: 0.9rem; }
+        .social-icons { display: flex; gap: 15px; }
+        .social-icon { width: 45px; height: 45px; border-radius: 4px; background: var(--glass-bg); border: 1px solid var(--glass-border); display: flex; justify-content: center; align-items: center; color: var(--accent-white); font-size: 1.2rem; transition: all 0.3s ease; }
+        .social-icon:hover { background: rgba(0, 247, 255, 0.1); border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 247, 255, 0.2); }
+        .footer-heading { font-family: "Orbitron", sans-serif; font-size: 1.2rem; margin-bottom: 25px; color: var(--accent-white); letter-spacing: 1px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { color: rgba(248, 249, 250, 0.6); text-decoration: none; transition: all 0.3s ease; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .footer-links a i { color: var(--accent-magenta); font-size: 0.8rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--accent-cyan); transform: translateX(5px); }
+        .footer-links a:hover i { color: var(--accent-cyan); }
+        .newsletter p { color: rgba(248, 249, 250, 0.6); margin-bottom: 20px; line-height: 1.6; font-size: 0.9rem; }
+        .newsletter-form { display: flex; gap: 0; }
+        .newsletter-input { flex: 1; padding: 14px 20px; border-radius: 4px 0 0 4px; border: 1px solid var(--glass-border); border-right: none; background: rgba(255, 255, 255, 0.02); color: var(--accent-white); font-family: "Poppins", sans-serif; }
+        .newsletter-input:focus { outline: none; border-color: var(--accent-cyan); background: rgba(0, 247, 255, 0.02); }
+        .newsletter-btn { background: var(--accent-cyan); color: var(--dark-bg); border: none; border-radius: 0 4px 4px 0; padding: 0 25px; font-family: "Orbitron", sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
+        .newsletter-btn:hover { background: #fff; box-shadow: 0 0 15px rgba(0, 247, 255, 0.5); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 30px; border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; color: rgba(248, 249, 250, 0.4); font-size: 0.85rem; }
+        .footer-bottom-links { display: flex; gap: 25px; }
+        .footer-bottom-links a { color: rgba(248, 249, 250, 0.4); text-decoration: none; transition: color 0.3s ease; }
+        .footer-bottom-links a:hover { color: var(--accent-cyan); }
+        
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tagline { font-size: 3.2rem; }
+            .profiles-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 75px; right: -100%; flex-direction: column; background: rgba(3, 3, 11, 0.98);
+                width: 100%; height: calc(100vh - 75px); padding: 40px 20px; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                border-top: 1px solid var(--glass-border); z-index: 999;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; text-align: center; padding: 10px; display: block;}
+            .nav-links a::after { display: none; }
+            .hamburger { display: block; z-index: 1001; }
+            .tagline { font-size: 2.8rem; }
+            .section-title { font-size: 2rem; }
+            .contact-options { flex-direction: column; align-items: center; }
+            .contact-option { width: 100%; max-width: 300px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px;}
+        }
+        @media (max-width: 480px) {
+            .tagline { font-size: 2.2rem; }
+            .profiles-grid { grid-template-columns: 1fr; }
+            .hook-text { font-size: 1.1rem; }
+            .newsletter-form { flex-direction: column; gap: 10px; }
+            .newsletter-input, .newsletter-btn { border-radius: 4px; border: 1px solid var(--glass-border); width: 100%;}
+            .newsletter-btn { padding: 15px; }
+            .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <a href="index.html" class="logo">AXION</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="modules.html">Modules</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <button class="hamburger"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="tagline">GET IN TOUCH</h1>
+            <p class="subheading">Connect with the minds behind Axion Cup '25</p>
+        </div>
+    </section>
+
+    <section class="contact-hook">
+        <div class="hook-container fade-in">
+            <p class="hook-text">
+                Have questions about <span>Axion Cup '25</span>? Want to <span>collaborate</span> or become a <span>sponsor</span>? 
+                We're here to help you navigate your journey with us. Reach out to our dedicated team members below.
+            </p>
+            
+            <div class="contact-options">
+                <div class="contact-option">
+                    <div class="option-icon"><i class="fas fa-question-circle"></i></div>
+                    <h3 class="option-title">General Questions</h3>
+                    <p class="option-desc">Get answers about the event, registration, or schedule</p>
+                </div>
+                <div class="contact-option">
+                    <div class="option-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 class="option-title">Sponsorship</h3>
+                    <p class="option-desc">Explore partnership opportunities with Axion</p>
+                </div>
+                <div class="contact-option">
+                    <div class="option-icon"><i class="fas fa-microphone"></i></div>
+                    <h3 class="option-title">Media Inquiries</h3>
+                    <p class="option-desc">Press kits, interviews, and media coverage</p>
+                </div>
+                <div class="contact-option">
+                    <div class="option-icon"><i class="fas fa-comments"></i></div>
+                    <h3 class="option-title">Collaboration</h3>
+                    <p class="option-desc">Discuss ways to work together on future projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profiles-section">
+        <h2 class="section-title">Our Contact Team</h2>
+        <div class="profiles-grid" id="profiles-container">
+            </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <a href="#" class="footer-logo">AXION</a>
+                <p>Axion Cup '25 is a premier STEAM event designed to ignite innovation and foster collaboration among Pakistan's brightest young minds.</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links-container">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="modules.html"><i class="fas fa-chevron-right"></i> Modules</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> News</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-container">
+                <h3 class="footer-heading">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+                    <li><a href="modules.html"><i class="fas fa-chevron-right"></i> Competition Rules</a></li>
+                    <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Code of Conduct</a></li>
+                    <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="newsletter">
+                <h3 class="footer-heading">Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest news and updates about Axion Cup '25</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">&copy; 2025 Axion Cup. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="terms.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 900 } },
+                color: { value: ["#00f7ff", "#ff007f"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.6, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#00f7ff", opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out", bounce: false },
+            },
+            interactivity: {
+                detect_on: "window",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push", push: { particles_nb: 3 } }, resize: true },
+            },
+            retina_detect: true,
+        });
+
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) { header.classList.add("scrolled"); } else { header.classList.remove("scrolled"); }
+        });
+
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            hamburger.innerHTML = navLinks.classList.contains("active") ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        const fadeElements = document.querySelectorAll(".fade-in");
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -100px 0px" };
+        const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("appear");
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+        fadeElements.forEach(element => { appearOnScroll.observe(element); });
+
+        // Contact profiles data 
+        const contactsData = [
+            {
+                id: 1,
+                name: "Sarah Khan",
+                role: "Event Director",
+                fields: ["Leadership", "Strategy", "Partnerships"],
+                email: "sarah.khan@axioncup.com",
+                phone: "+92 300 1234567",
+                responsibility: "Overall event coordination and strategic partnerships",
+                image: "contact-1.jpg",
+                methods: [
+                    { type: "envelope", value: "mailto:sarah.khan@axioncup.com" },
+                    { type: "phone", value: "tel:+923001234567" },
+                    { type: "twitter", value: "https://twitter.com" }
+                ]
+            },
+            {
+                id: 2,
+                name: "Ali Ahmed",
+                role: "Technical Lead",
+                fields: ["IT Infrastructure", "Platforms", "Support"],
+                email: "ali.ahmed@axioncup.com",
+                phone: "+92 321 7654321",
+                responsibility: "Technical systems, competition platforms, and IT support",
+                image: "contact-2.jpg",
+                methods: [
+                    { type: "envelope", value: "mailto:ali.ahmed@axioncup.com" },
+                    { type: "phone", value: "tel:+923217654321" },
+                    { type: "github", value: "https://github.com" }
+                ]
+            },
+            {
+                id: 3,
+                name: "Fatima Malik",
+                role: "Sponsorship Coord.",
+                fields: ["Partnerships", "Funding", "Sponsor Relations"],
+                email: "fatima.malik@axioncup.com",
+                phone: "+92 345 9876543",
+                responsibility: "Sponsor acquisition, partnership development, and funding",
+                image: "contact-3.jpg",
+                methods: [
+                    { type: "envelope", value: "mailto:fatima.malik@axioncup.com" },
+                    { type: "phone", value: "tel:+923459876543" },
+                    { type: "linkedin", value: "https://linkedin.com" }
+                ]
+            },
+            {
+                id: 4,
+                name: "Omar Hassan",
+                role: "Media & Comms",
+                fields: ["Public Relations", "Social Media", "Press"],
+                email: "omar.hassan@axioncup.com",
+                phone: "+92 333 4567890",
+                responsibility: "Media relations, press coverage, and social media management",
+                image: "contact-4.jpg",
+                methods: [
+                    { type: "envelope", value: "mailto:omar.hassan@axioncup.com" },
+                    { type: "phone", value: "tel:+923334567890" },
+                    { type: "instagram", value: "https://instagram.com" }
+                ]
+            }
+        ];
+
+        // Generate profile cards
+        const profilesContainer = document.getElementById('profiles-container');
+        
+        function generateProfileCards() {
+            profilesContainer.innerHTML = '';
+            
+            contactsData.forEach(contact => {
+                const card = document.createElement('div');
+                card.className = 'profile-card fade-in';
+                card.innerHTML = `
+                    <div class="profile-header">
+                        <div class="profile-image">
+                            <img src="${contact.image}" alt="${contact.name} Contact Photo">
+                        </div>
+                        <h3 class="profile-name">${contact.name}</h3>
+                        <div class="profile-role">${contact.role}</div>
+                        <div class="profile-tags">
+                            ${contact.fields.map(field => `<span class="profile-tag">${field}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <div class="profile-field">
+                            <span class="field-label">Responsibility</span>
+                            <div class="field-value">${contact.responsibility}</div>
+                        </div>
+                        
+                        <div class="profile-field">
+                            <span class="field-label">Email</span>
+                            <div class="field-value">${contact.email}</div>
+                        </div>
+                        
+                        <div class="profile-field">
+                            <span class="field-label">Phone</span>
+                            <div class="field-value">${contact.phone}</div>
+                        </div>
+                        
+                        <div class="contact-methods">
+                            ${contact.methods.map(method => `
+                                <a href="${method.value}" class="contact-method" target="_blank">
+                                    <i class="fa${method.type === 'envelope' || method.type === 'phone' ? 's' : 'b'} fa-${method.type}"></i>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                profilesContainer.appendChild(card);
+            });
+            
+            document.querySelectorAll('.fade-in').forEach(element => {
+                appearOnScroll.observe(element);
+            });
+        }
+        
+        generateProfileCards();
+    </script>
+</body>
+</html>
